@@ -1,0 +1,59 @@
+2024-01-24 23:14:18,722 ERROR: An error getting result table. Query: 
+    SELECT
+        table_name,
+        dbms_metadata.get_ddl('TABLE', table_name) AS ddl,
+        column_name,
+        comments
+    FROM
+        all_tab_columns
+        LEFT JOIN all_col_comments ON all_tab_columns.table_name = all_col_comments.table_name AND all_tab_columns.column_name = all_col_comments.column_name
+    WHERE
+        all_tab_columns.owner = 'PADDI'
+        AND all_tab_columns.table_name LIKE 'D3_BENEFI%'
+. Error message: ORA-00918: Spalte nicht eindeutig definiert
+2024-01-24 23:24:53,995 ERROR: An error getting result table. Query: 
+    SELECT
+        table_name,
+        column_name,
+        data_type || '(' || data_length || ')' as datatype,
+        nullable,
+        data_default,
+        comments
+    FROM
+        all_tab_columns
+        LEFT JOIN all_col_comments ON all_tab_columns.table_name = all_col_comments.table_name AND all_tab_columns.column_name = all_col_comments.column_name
+    WHERE
+        all_tab_columns.owner = 'PADDI'
+        AND all_tab_columns.table_name LIKE 'D3_BENEFI%'
+. Error message: ORA-00918: Spalte nicht eindeutig definiert
+2024-01-24 23:26:30,517 ERROR: An error getting result table. Query: 
+    SELECT
+        table_name,
+        column_name,
+        data_type || '(' || data_length || ')' as datatype,
+        nullable,
+        data_default,
+        comments
+    FROM
+        all_tab_columns
+        LEFT JOIN all_col_comments ON all_tab_columns.table_name = all_col_comments.table_name AND all_tab_columns.column_name = all_col_comments.column_name
+    WHERE
+        all_tab_columns.owner = 'PADDI'
+        AND all_tab_columns.table_name LIKE 'D3_BENEFI%'
+. Error message: ORA-00918: Spalte nicht eindeutig definiert
+2024-01-24 23:26:52,296 ERROR: An error getting result table. Query: 
+    SELECT
+        table_name,
+        column_name,
+        data_type || '(' || data_length || ')' as datatype,
+        nullable,
+        data_default,
+        comments
+    FROM
+        all_tab_columns
+        LEFT JOIN all_col_comments ON all_tab_columns.table_name = all_col_comments.table_name AND all_tab_columns.column_name = all_col_comments.column_name
+    WHERE
+        all_tab_columns.owner = 'PADDI'
+        AND all_tab_columns.table_name LIKE 'D3_BENEFI%'
+. Error message: ORA-00918: Spalte nicht eindeutig definiert
+2024-01-25 01:18:46,436 ERROR: An error getting result table. Query: SELECT * FROM PADDI.D3_BEN. Error message: ORA-00942: Tabelle oder View nicht vorhanden

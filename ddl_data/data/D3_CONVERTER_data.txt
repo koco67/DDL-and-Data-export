@@ -1,0 +1,432 @@
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.009, update D3_COST_ELEMENTS set esfchecksum = D65_ESF_AMOUNT/(D65_ESF_AMOUNT+D66_PUBLIC_AMOUNT) where D65_ESF_AMOUNT<>0, None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.010, update D3_COST_ELEMENTS set D65_ESF_AMOUNT = D65_ESF_AMOUNT-0.01, D66_PUBLIC_AMOUNT=D66_PUBLIC_AMOUNT+0.01 where (esfchecksum*100) > esfshare, None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 90.ParticipantIndicators.SET_D518, update D3_PARTICIPANT_INDICATORS set D518_RELEVANCE='YES' where D510_ACTUAL = 1, always the last query!!! set D518 based on calculated numeric D510_ACTUAL value, ALL, 1
+0B86197F5809598BE0637E695E8611C7, IndikatorenTransformation, 95.Transform.Indicators, insert into d3_indicators (OP_ID, FKZ)
+select opid, fkz from (select d500_op_id opid, fkz from d3_participant_indicators where fkz = '[FKZ]' group by d500_op_id, fkz order by fkz, d500_op_id), None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, Indikatoren, 96.Indicators.PO1a1, insert into d3_indicators (OP_ID, FKZ) values ('PO1a1', '[FKZ]'), None, ALL, 1
+0257AC33B2DE5827E0637E695E86FD59, Profi, 02.P.Operations.004, UPDATE D3_OPERATIONS
+SET D13_OTHERLOCATION = (select case when not coalesce(D14_OTHERLOCATIONNAME,NULL) is null then 1 else 0 end  from
+    D3_OPERATIONS
+WHERE D34_REFERENCENUMBER = '[FKZ]') where D34_REFERENCENUMBER = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del09.Indicators, delete from d3_indicators where FKZ = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del08.IndicatorValues, delete from d3_indicator_values 
+where INDICATOR_ID in (select id from d3_indicators where FKZ = '[FKZ]'), None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, Indikatoren, 97.Indicators.PO1a1, insert into d3_indicator_values (total,year,value,type,INDICATOR_ID) 
+select founded, extract(year from d40_startdate), founded, 'ActualValue', ind.id from (
+    select count(*) founded
+    from d3_operations op left join gtiprofiaccess.company co on op.d34_referencenumber = co.fkz
+    where op.d34_referencenumber = '[FKZ]' and not co.foundeddate between op.d40_startdate and add_months(op.d41_enddate,12)
+), d3_operations op inner join d3_indicators ind on op.d34_referencenumber = ind.fkz 
+where ind.fkz='[FKZ]' and ind.op_id='PO1a1', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, Indikatoren, 98.Indicators.PO1a1, merge into d3_indicator_values iv using 
+    (select ind.id, foundeddate
+        from gtiprofiaccess.company co inner join d3_indicators ind on co.fkz = ind.fkz
+        where co.fkz='[FKZ]' and not co.foundeddate is null
+        ) com
+on (iv.INDICATOR_ID = com.id) 
+when matched then
+    update set iv.year = extract(year from com.foundeddate), None, ALL, 1
+0257AC33B2DD5827E0637E695E86FD59, Profi, 02.P.Operations.001, insert into D3_OPERATIONS (PROG_ACRONYM, D34_REFERENCENUMBER, D36_NAME, d37_shortname, D38_DESCRIPTION, D38B_MAINGOALS, D38A_SUBJECTOFFINANCING,
+ D39_DOCUMENTMAILINGDATE, D54_confirmationDate, D40_STARTDATE, D41_ENDDATE, D22_ktRegionCategory,
+ D72_REALCOSTS, D73_STANDARDUNITCOST, D74_LUMPSUMCOSTS, D75_FLATRATECOST)
+select
+       prog.acronym,
+       gd.fkz fkz,
+       gd.thema thema,
+       pm.akronym akronym,
+       gd.aufgabenbeschreibung,
+       substr(
+       (
+           case when not gd.anwendungspotential1text is null then gd.anwendungspotential1text || ',' else '' end  ||
+           case when not gd.anwendungspotential2text is null then gd.anwendungspotential2text || ',' else '' end  ||
+           case when not gd.anwendungspotential3text is null then gd.anwendungspotential3text || ',' else '' end  ||
+           case when not gd.anwendungspotential4text is null then gd.anwendungspotential4text || ',' else '' end  ||
+           case when not gd.anwendungspotential5text is null then gd.anwendungspotential5text || ',' else '' end
+           ),1,length(
+               case when not gd.anwendungspotential1text is null then gd.anwendungspotential1text || ',' else '' end  ||
+           case when not gd.anwendungspotential2text is null then gd.anwendungspotential2text || ',' else '' end  ||
+           case when not gd.anwendungspotential3text is null then gd.anwendungspotential3text || ',' else '' end  ||
+           case when not gd.anwendungspotential4text is null then gd.anwendungspotential4text || ',' else '' end  ||
+           case when not gd.anwendungspotential5text is null then gd.anwendungspotential5text || ',' else '' end
+                          )-1),
+       gd.aufgabenbeschreibung,
+       gd.eingangsdatum,
+       gd.bewilligungsdatum,
+       gd.laufzeitbeginn,
+       gd.laufzeitende,
+       case
+           when gd.esfziel = 1 then 'SER'
+            else 'UER'
+        end case,
+       case when regexp_like(gd.fkz,'^03EF[^U]') then 1 else 0 end case,
+        case when regexp_like(gd.fkz,'^03EGS|03EGT') then 1 else 0 end case,
+        case when regexp_like(gd.fkz,'^03EGS|03EGT') then 1 else 0 end case,
+        0
+        from
+             ((gtiprofiaccess.I_PROFI_GRUNDDATEN gd inner join gtiprofiaccess.projectmetadata pm on gd.fkz = pm.fkz)
+            inner join gtiprofiaccess.system_programms sysprog on regexp_like(gd.fkz, sysprog.FKZREGEX))
+            inner join paddi.D3_PROGRAMMES prog on sysprog.programmshort = prog.acronym
+
+        where
+              gd.fkz = '[FKZ]'
+              and gd.antragvorhaben = 'V', None, ALL, 1
+0257AC33B2DE5827E0637E695E86FD59, Profi, 02.P.Operations.002, UPDATE D3_OPERATIONS
+SET D27_KTNUTSCODE = (select coalesce(nuts.NUTS3,'0') from
+    GTIPROFIACCESS.I_PROFI_ZE_ADRESSEN adr inner join PADDI.DATA_NUTS3_PLZ nuts on coalesce(adr.AS_PLZ,adr.ze_plz) = nuts.plz
+where adr.V_NR=[VNR])
+WHERE D34_REFERENCENUMBER = '[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.013_Korrektur, merge into D3_PARTICIPANT_INDICATORS tn using
+    (select PARTICIPANT_ID, fkz , sum(D510_ACTUAL)
+        from D3_PARTICIPANT_INDICATORS
+        where fkz='[FKZ]' and D500_OP_ID in ('EECO09', 'EECO10','EECO11')
+        group by PARTICIPANT_ID, FKZ
+        having sum(D510_ACTUAL) > 1) err
+on (tn.PARTICIPANT_ID = err.PARTICIPANT_ID and tn.FKZ = err.FKZ and D500_OP_ID in ('EECO09', 'EECO10'))
+when matched then
+    update set tn.D510_ACTUAL = 0, Jeder Teilnehmende muss einem der Indikatoren EECO09 oder EECO10 oder EECO11 zugeordnet werden.
+Ein Teilnehmender darf nur unter einen der Indikatoren EECO09 oder EECO10 oder EECO11 fallen, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.009_Korrektur, update D3_PARTICIPANT_INDICATORS set D510_ACTUAL = 1 
+    where FKZ = '[FKZ]' and D500_OP_ID = 'EECO14' and PARTICIPANT_ID in (
+select PARTICIPANT_ID from D3_PARTICIPANT_INDICATORS where fkz='[FKZ]' and D500_OP_ID = 'EECO13' and D510_ACTUAL=1), Wenn EECO13 dann auch EECO14, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.015_EECO04, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO04', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         (esf."6.1_v_102" = 1 or esf."6.2_v_54" in (2, 3) or esf."6.3_v_104" = 1 or esf."7_v_105" = 1) or
+         (esf."4_v_94" = 1 and (esf."3_v_86" = 2 and (not esf."5.1_v_115" between 1 and 3))) or
+         (esf."5_v_95" = 1 and (not esf."5.1_v_115" between 1 and 3) and esf."5.3_v_98" = 1)
+         then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.016_EECO05, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO05', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."3_v_86" = 1 or esf."4_v_94" = 1 
+         then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.018_Korrektur, merge into D3_PARTICIPANT_INDICATORS tn using
+    (select PARTICIPANT_ID, fkz , sum(D510_ACTUAL)
+        from D3_PARTICIPANT_INDICATORS
+        where fkz='[FKZ]' and D500_OP_ID in ('EECO02', 'EECO04','EECO05')
+        group by PARTICIPANT_ID, FKZ
+        having sum(D510_ACTUAL) > 1) err
+on (tn.PARTICIPANT_ID = err.PARTICIPANT_ID and tn.FKZ = err.FKZ and D500_OP_ID in ('EECO02', 'EECO04'))
+when matched then
+    update set tn.D510_ACTUAL = 0, Jeder Teilnehmende muss einem der Indikatoren EECO02 oder EECO04 oder EECO05 zugeordnet werden.
+Ein Teilnehmender darf nur unter einen der Indikatoren EECO02 oder EECO04 oder EECO05 fallen., ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 01.P.Beneficiaries.002, update D3_BENEFICIARIES set D78_KTORGTYPE2 = (
+select distinct rf.orgtype2 from
+    (select v_nr, ZE_RECHTSFORM from GTIPROFIACCESS.I_PROFI_ZE_ADRESSEN) adr inner join GTIPROFIACCESS.data_ze_rechtsform rf on adr.ze_rechtsform=rf.rechtsform
+where adr.v_nr = [VNR] and rownum=1) where fkz = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 01.P.Beneficiaries.001, insert into
+    D3_BENEFICIARIES (fkz, D1_NAME,D1A_ID,D78_KTORGTYPE2, D3_KTPRETAXDEDUCTION, D4_STREET, D5_ZIP, D6_CITY, D7_TELEPHONE, D8_EMAIL)
+
+    select
+           pm.fkz, org.org_name, pm.org_id,
+           -1,org.VORSTEUERABZUG,
+           case when not adr.as_strasse is null then adr.as_strasse else adr.ze_strasse end,
+           case when not adr.as_plz is null then adr.as_plz else adr.ze_plz end,
+           case when not adr.as_ort is null then adr.as_ort else adr.ze_ort end,           
+           org.tel,
+           org.email
+from
+     (GTIPROFIACCESS.i_profi_ze_adressen adr inner join GTIPROFIACCESS.projectmetadata pm on adr.fkz = pm.fkz)
+    inner join GTIPROFIACCESS.organisation org on pm.org_id=org.org_id
+where
+      adr.v_nr = [VNR], None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.002, update D3_COST_ELEMENTS set D67_PRIVATE_AMOUNT =
+(
+    select
+           eigenmittel
+    from
+         GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN
+    where
+      v_nr = [VNR] and FINANZTYP='ABW' and haushaltsjahr = 0
+    ),
+    esfshare = (select ESFANTEIL from GTIPROFIACCESS.i_profi_grunddaten where v_nr = [VNR])
+
+where fkz = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.003, merge into D3_COST_ELEMENTS ce using
+    (select
+           fkz, extract(year from laufzeitbeginn) jahr, 
+           round(months_between(to_date('31.12.' || to_char(extract(year from LAUFZEITBEGINN))),LAUFZEITBEGINN)) monate
+    from GTIPROFIACCESS.I_PROFI_GRUNDDATEN where V_NR = [VNR]) gd
+on (ce.D64_YEAR = gd.jahr and ce.FKZ = gd.FKZ)
+when matched then
+    update set costmonths = gd.monate, None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.004, merge into D3_COST_ELEMENTS ce using
+    (select
+           fkz, extract(year from laufzeitende) jahr, 
+           round(months_between(LAUFZEITende, to_date('01.01.' || to_char(extract(year from LAUFZEITende))))) monate
+    from GTIPROFIACCESS.I_PROFI_GRUNDDATEN where V_NR = [VNR]) gd
+on (ce.D64_YEAR = gd.jahr and ce.FKZ = gd.FKZ)
+when matched then
+    update set costmonths = gd.monate, None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.005, update 
+   D3_COST_ELEMENTS 
+set costmonths = 12 where fkz in (
+   select fkz from (select fkz, count(*) from D3_COST_ELEMENTS group by fkz having count(*) > 2)
+) and costmonths=0, None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.007, update D3_COST_ELEMENTS
+set D65_ESF_AMOUNT = round(((
+select
+       ((hd.PERSONALKOSTEN +  hd.FREMDLEISTUNGEN + (case when hd.MATERIAL <= 25000 then 10000 else 30000 end))/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')  
+           ) * (gd.ESFANTEIL/100)
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths),2) where fkz = '[FKZ]', None, EGS, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.008, update D3_COST_ELEMENTS
+set D66_PUBLIC_AMOUNT = round((
+select
+       ((hd.PERSONALKOSTEN +  hd.FREMDLEISTUNGEN + (case when hd.MATERIAL <= 25000 then 10000 else 30000 end))/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')
+           ) * (1-(gd.ESFANTEIL/100))
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths,2) where fkz = '[FKZ]', None, EGS, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.007, update D3_COST_ELEMENTS
+set D65_ESF_AMOUNT = round(((
+select
+       ((hd.PERSONALKOSTEN +  hd.FREMDLEISTUNGEN + (case when hd.MATERIAL <= 25000 then 10000 else 30000 end))/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')  
+           ) * (gd.ESFANTEIL/100)
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths),2) where fkz = '[FKZ]', None, EGT, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.008, update D3_COST_ELEMENTS
+set D66_PUBLIC_AMOUNT = round((
+select
+       ((hd.PERSONALKOSTEN +  hd.FREMDLEISTUNGEN + (case when hd.MATERIAL <= 25000 then 10000 else 30000 end))/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')
+           ) * (1-(gd.ESFANTEIL/100))
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths,2) where fkz = '[FKZ]', None, EGT, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.006, update D3_COST_ELEMENTS
+set esfcoststotal = (
+select
+       (hd.PERSONALKOSTEN +  hd.FREMDLEISTUNGEN + (case when hd.MATERIAL <= 25000 then 10000 else 30000 end))
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) where fkz = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.011, update D3_COST_ELEMENTS set esfchecksum = D65_ESF_AMOUNT/(D65_ESF_AMOUNT+D66_PUBLIC_AMOUNT) where D65_ESF_AMOUNT<>0, None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, Teilnehmer, 04.Participants.001, insert into D3_PARTICIPANTS (D300_ID, D302_PRE_ID, D313_ENTRY_DATE, D315_EXIT_DATE, D316_CANCELED,
+                             D317_GENDER, FKZ)
+select pp.personid, pp.personid
+    , case when cp.projectentry < op.D40_STARTDATE then op.D40_STARTDATE else cp.projectentry end
+    , case when cp.projectexit > op.D41_ENDDATE then op.D41_ENDDATE else cp.projectexit end
+    , case when cp.projectexit < op.D41_ENDDATE then 1 else 0 end
+    , case when cp.gender is null then 'd' else
+        case lower(cp.gender)
+            when 'w' then 'f'
+            when 'm' then 'm'
+                else 'd'
+        end
+        end
+    , op.D34_REFERENCENUMBER
+       from
+    GTIPROFIACCESS.contactperson cp inner join GTIPROFIACCESS.projectpersons pp on cp.personid=pp.personid
+    inner join d3_operations op on pp.fkz = op.D34_REFERENCENUMBER
+
+where
+    upper(pp.persontype) like 'GRÜNDER%' and pp.fkz = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del07.Participants, delete from d3_participants where FKZ = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.007, update D3_COST_ELEMENTS
+set D65_ESF_AMOUNT = round(((
+select
+       ((hd.summevorhabenskosten - (hd.lohnempfänger + hd.BESCHÄFTIGUNGSENTGELTE))/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')  
+           ) * (gd.ESFANTEIL/100)
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths),2) where fkz = '[FKZ]', None, EF, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.008, update D3_COST_ELEMENTS
+set D66_PUBLIC_AMOUNT = round((
+select
+       ((hd.summevorhabenskosten - (hd.lohnempfänger + hd.BESCHÄFTIGUNGSENTGELTE) )/(select sum(costmonths) from D3_COST_ELEMENTS where fkz = '[FKZ]')
+           ) * (1-(gd.ESFANTEIL/100))
+from
+       GTIPROFIACCESS.I_PROFI_HAUSHALTSDATEN hd inner join GTIPROFIACCESS.I_PROFI_GRUNDDATEN gd on hd.V_NR =gd.V_NR
+where
+      hd.FINANZTYP='ABW' and hd.fkz ='[FKZ]' and hd.HAUSHALTSJAHR = 0) * costmonths,2) where fkz = '[FKZ]', None, EF, 1
+0257AC33B2DD5827E0637E695E86FD59, Delete, 00.del02.Opdetails_Payment_request, delete from d3_OPDETAILS_PAYMENT_REQUEST where FKZ ='[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del06.ParticipantsIndicators, delete from d3_participant_indicators where FKZ = '[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.001_EECO01, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO01', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , 1
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.002_EECO03, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO03', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when esf."5.1_v_115" = 3 and esf."5.1d_v_100" = 2 then 1 else 0 end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.003_EECO06, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO06', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."2_v_85" = 1 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.004_EECO07, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO07', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."2_v_85" = 2 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.005_EECO08, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO08', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."2_v_85" = 4 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.006_EECO12, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO12', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."14_v_112" = 1 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.007_EECO13, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO13', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."12_v_110" = 1 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0257AC33B2DD5827E0637E695E86FD59, Delete, 00.del03.Operations, delete from D3_OPERATIONS where D34_REFERENCENUMBER ='[FKZ]', None, ALL, 1
+0257AC33B2DE5827E0637E695E86FD59, Profi, 02.P.Operations.003, MERGE INTO D3_OPERATIONS r USING
+(select * from GTIPROFIACCESS.projectmetadata) e ON (
+r.D34_REFERENCENUMBER = e.fkz)
+WHEN MATCHED THEN
+    UPDATE SET
+        r.D13_OTHERLOCATION = case when e.docsotherlocation = 1 then 1 else 0 end,
+        r.d14_OTHERLOCATIONNAME = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONNAME,'') else null end,
+        r.D15_OTHERLOCATIONSTREET = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONSTREET,'') else null end,
+        r.D16_OTHERLOCATIONZIP = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONZIP,'') else null end,
+        r.D17_OTHERLOCATIONCITY = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONCITY,'') else null end,
+        r.D18_OTHERLOCATIONTELEPHONE = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONTELEPHONE,'') else null end,
+        r.D19_OTHERLOCATIONEMAIL = case when e.docsotherlocation = 1 then coalesce(e.DOCSOTHERLOCATIONEMAIL,'') else null end, None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del01.Beneficiaries, delete from D3_BENEFICIARIES where FKZ = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Delete, 00.del04.Cost_Elements, delete from D3_COST_ELEMENTS where FKZ = '[FKZ]', None, ALL, 1
+027EA4B77E564A3FE0637E695E86890B, Profi, 03.P.Cost_Elements.001, insert into D3_COST_ELEMENTS (FKZ, D64_YEAR,D65_ESF_AMOUNT,D66_PUBLIC_AMOUNT,D67_PRIVATE_AMOUNT,TYPE)
+select '[FKZ]', Jahre.Jahr, 0, 0, 0, 'FundingCommitment' from (select Jahr from system_zeit group by Jahr) Jahre where jahre.jahr between
+    (select extract(year from laufzeitbeginn) from GTIPROFIACCESS.i_profi_grunddaten where v_nr=[VNR])
+    and
+    (select extract(year from laufzeitende) from GTIPROFIACCESS.i_profi_grunddaten where v_nr=[VNR]), None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.008_EECO14, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO14', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."10_v_108" = 2 or (esf."10_v_108" = 1 and esf."11_v_109" = 1) then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.012_EECO11, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO11', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."9_v_123" in (11, 12, 13) then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.011_EECO10, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO10', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."8_v_126" in (5, 6, 7) or esf."9_v_123" = 10 then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.010_EECO09, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO09', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."8_v_126" in (1, 2, 3, 4, 8, 9) then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.014_EECO02, insert into D3_PARTICIPANT_INDICATORS (PARTICIPANT_ID, D500_OP_ID, D518_RELEVANCE, FKZ, D508_YEAR, D510_ACTUAL)
+select esf.personid, 'EECO02', 'YES', esf.FKZ
+     , case when cp.projectentry < op.D40_STARTDATE then extract(year from op.D40_STARTDATE) else extract(year from cp.projectentry) end
+     , case when
+         esf."5.1_v_115" in (1,2,3) and (esf."3_v_86" = 2 and esf."6_v_101" = 2)
+             or esf."5.1_v_115" in (1,2,3) and esf."3.2_v_88" = 1  then 1
+            else 0
+       end
+from
+    GTIPROFIACCESS.exist_esf_2021_2027 esf inner join D3_OPERATIONS op on esf.fkz = op.D34_REFERENCENUMBER
+    inner join GTIPROFIACCESS.contactperson cp on esf.personid = cp.personid
+
+where esf.FKZ='[FKZ]', None, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.017_Korrektur, update D3_PARTICIPANT_INDICATORS set D510_ACTUAL = 1 
+    where FKZ = '[FKZ]' and D500_OP_ID = 'EECO02' and PARTICIPANT_ID in (
+select PARTICIPANT_ID from D3_PARTICIPANT_INDICATORS where fkz='[FKZ]' and D500_OP_ID = 'EECO03' and D510_ACTUAL=1), Wenn EECO03 dann auch EECO02, ALL, 1
+0B86197F5809598BE0637E695E8611C7, TeilnehmerIndikatoren, 05.ParticipantIndicators.019_Korrektur, update D3_PARTICIPANT_INDICATORS set D510_ACTUAL = 0 
+    where FKZ = '[FKZ]' and D500_OP_ID = 'EECO02' and PARTICIPANT_ID in (
+select PARTICIPANT_ID from D3_PARTICIPANT_INDICATORS where fkz='[FKZ]' and D500_OP_ID = 'EECO03' and D510_ACTUAL=1), EECO02 Ergänzung: EEC03 oder EEC02, ALL, 1

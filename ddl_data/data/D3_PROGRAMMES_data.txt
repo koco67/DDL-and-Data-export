@@ -1,0 +1,3 @@
+556caf5d-2b3a-455f-a203-bd5afa813e04, EXIST-Gruendungsstipendium - Foerderung von Unternehmensgruendungen, EXIST-Gruendungsstipendium, 2023-10-09 06:51:39, EGT
+891aa466-0815-4526-8522-041a15aaddfb, EXIST-Forschungstransfer - Foerderung von forschungsintensiven Unternehmensgruendungen, EXIST-Forschungstransfer, 2023-10-09 06:51:40, EF
+556caf5d-2b3a-455f-a203-bd5afa813e04, EXIST-Gruenderstipendium - Foerderung von Unternehmensgruendungen, EXIST-Gruenderstipendium, 2023-10-09 06:51:40, EGS

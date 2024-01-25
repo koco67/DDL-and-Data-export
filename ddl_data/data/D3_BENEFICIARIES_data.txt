@@ -1,0 +1,110 @@
+Klinikum rechts der Isar der Technischen Universität München, 111, 2, 1, NO, Ismaninger Str. 22, 81675, München, 089 / 4140 - 0, vorstand@mri.tum.de, 0, 03EFVBY291, 2024-01-24 15:08:25, 0
+Universität Paderborn, 163, 2, 1, NO, Warburger Str. 100, 33098, Paderborn, +49 5251600, info@uni-paderborn.de, 0, 03EFVNW326, 2024-01-24 15:08:26, 0
+Bergische Universität Wuppertal, 3, 2, 1, YES, Gaußstraße 20, 42119, Wuppertal, +49 202 439-0, presse@uni-wuppertal.de, 0, 03EFVNW329, 2024-01-24 15:08:27, 0
+Bundesanstalt für Materialforschung und -prüfung (BAM), 195, 2, 1, YES, Unter den Eichen 87, 12205, Berlin, +49 30 8104-0, info@bam.de, 0, 03EFWBE148, 2024-01-24 15:08:28, 0
+Fraunhofer-Gesellschaft zur Förderung der angewandten Forschung eingetragener Verein, 181, 2, 3, YES, Pascalstr. 8 - 9, 10587, Berlin, +49 89 1205-0, info@zv.fraunhofer.de, 0, 03EFWBE151, 2024-01-24 15:08:28, 0
+Universität Ulm, 170, 2, 1, NO, Helmholtzstr. 20, 89081, Ulm, +49 731 50-10, info@uni-ulm.de, 0, 03EFWBW263, 2024-01-24 15:08:29, 0
+Universität Heidelberg, 130, 2, 1, NO, Im Neuenheimer Feld 368, 69120, Heidelberg, +49 6221/542157, info@uni-heidelberg.de, 0, 03EFWBW264, 2024-01-24 15:08:30, 0
+Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V., 375, 2, 3, NO, Jahnstr. 29, 69120, Heidelberg, None, None, 0, 03EFWBW265, 2024-01-24 15:08:31, 0
+Technische Universität München, 147, 2, 1, NO, Boltzmannstr. 15, 85748, Garching b. München, +49 89 289-01, info@tum.de, 0, 03EFWBY294, 2024-01-24 15:08:31, 0
+Universität Augsburg, 148, 2, 1, NO, Universitätsstraße2, 86159, Augsburg, +49 821/598-3001, info@uni-augsburg.de, 0, 03EFWBY298, 2024-01-24 15:08:32, 0
+Friedrich-Alexander-Universität Erlangen-Nürnberg, 56, 2, 1, NO, Cauerstraße 9, 91058, Erlangen, +49 9131 85-0, poststelle@fau.de, 0, 03EFWBY299, 2024-01-24 15:08:33, 0
+Technische Universität München, 147, 2, 1, NO, Lichtenbergstr. 4, 85748, Garching b. München, +49 89 289-01, info@tum.de, 0, 03EFWBY302, 2024-01-24 15:08:34, 0
+Ludwig-Maximilians-Universität München, 119, 2, 1, NO, Geschwister-Scholl-Platz 1, 80539, München, +49 89 2180-0, info@lmu.de, 0, 03EFWBY304, 2024-01-24 15:08:34, 0
+Universität Kassel, 158, 2, 1, NO, Mönchebergstr. 7, 34125, Kassel, +49 561 804-0, info@uni-kassel.de, 0, 03EFWHE093, 2024-01-24 15:08:35, 0
+Deutsches Zentrum für Luft- und Raumfahrt e.V., 294, 2, 3, YES, Escherweg 2, 26121, Oldenburg, +49 2203 601-0, contact-dlr@dlr.de, 0, 03EFWNI118, 2024-01-24 15:08:36, 0
+Hochschule Niederrhein, 328, 2, 1, NO, Webschulstr. 31, 41065, Mönchengladbach, +49 (0)2151 822-0, webmaster@hs-niederrhein.de, 0, 03EFWNW335, 2024-01-24 15:08:37, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Templergraben 55, 52062, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EFWNW338, 2024-01-24 15:08:37, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Seffenter Weg 201, 52074, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EFWNW339, 2024-01-24 15:08:38, 0
+DWI - Leibniz-Institut für Interaktive Materialien e.V., 300, 2, 3, NO, Forckenbeckstr. 50, 52074, Aachen, +49 241 80233-00, contact@dwi.rwth-aachen.de, 0, 03EFWNW341, 2024-01-24 15:08:39, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Forckenbeckstr. 51, 52074, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EFWNW346, 2024-01-24 15:08:40, 0
+Technische Universität Dortmund, 143, 2, 1, NO, Leonhard-Euler-Str. 5, 44227, Dortmund, +49 231/755-0, info@tu-dortmund.de, 0, 03EFWNW347, 2024-01-24 15:08:40, 0
+Ruhr-Universität Bochum, 129, 2, 1, NO, I-Südstraße, 44801, Bochum, +49 234 32-201, info@ruhr-uni-bochum.de, 0, 03EFWNW351, 2024-01-24 15:08:41, 0
+Technische Universität Kaiserslautern, 146, 2, 1, NO, Gottlieb-Daimler-Str. 47, 67663, Kaierslautern, +49 631 205-0, info@uni-kl.de, 0, 03EFWRP036, 2024-01-24 15:08:42, 0
+Christian-Albrechts-Universität zu Kiel, 226, 2, 1, NO, Westring 423, 24118, Kiel, +49 431  880-00, info@uni-kiel.de, 0, 03EFWSH049, 2024-01-24 15:08:42, 0
+Otto-von-Guericke-Universität Magdeburg, 125, 2, 1, NO, Universitätsplatz 2, 39106, Magdeburg, +49 391 67-01, info@ovgu.de, 0, 03EFWST042, 2024-01-24 15:08:43, 0
+Brandenburgische Technische Universität Cottbus-Senftenberg, 35, 2, 1, NO, Platz der Deutschen Einheit 1, 03046, Cottbus, +49 3573 85 - 0, presse@b-tu.de, 0, 03EGTBB003, 2024-01-24 15:08:44, 0
+Fachhochschule Potsdam, 43, 2, 1, NO, Kiepenheuerallee 5, 14469, Potsdam, +49 331 580-00, info@fh-potsdam.de, 0, 03EGTBB004, 2024-01-24 15:08:45, 0
+Humboldt-Universität zu Berlin, 101, 2, 1, NO, Unter den Linden 6, 10117, Karlsruhe, +49 30 2093-0, pr@hu-berlin.de, 0, 03EGTBE002, 2024-01-24 15:08:46, 0
+Humboldt-Universität zu Berlin, 101, 2, 1, NO, Unter den Linden 6, 10117, Berlin, +49 30 2093-0, pr@hu-berlin.de, 0, 03EGTBE003, 2024-01-24 15:08:46, 0
+Technische Universität Berlin, 138, 2, 1, NO, Kaiserin-Augusta-Allee 104, 10553, Berlin, +49 30 314-0, info@tu-berlin.de, 0, 03EGTBE004, 2024-01-24 15:08:47, 0
+Technische Universität Berlin, 138, 2, 1, NO, Straße des 17. Juni 135, 10623, Berlin, +49 30 314-0, info@tu-berlin.de, 0, 03EGTBE005, 2024-01-24 15:08:48, 0
+Hochschule für Wirtschaft und Recht Berlin, 88, 2, 1, NO, Badensche Str. 52, 10825, Berlin, +49 (0)30 30877-0, presse@hwr-berlin.de , 0, 03EGTBE007, 2024-01-24 15:08:49, 0
+Humboldt-Universität zu Berlin, 101, 2, 1, NO, Unter den Linden 6, 10117, Berlin, +49 30 2093-0, pr@hu-berlin.de, 0, 03EGTBE009, 2024-01-24 15:08:49, 0
+Hochschule für Technik und Wirtschaft Berlin, 85, 2, 1, NO, Treskowallee 8, 10318, Berlin, +49 30 5019 - 0, kommunikation@htw-berlin.de, 0, 03EGTBE012, 2024-01-24 15:08:50, 0
+Hochschule für Wirtschaft und Recht Berlin, 88, 2, 1, NO, Badensche Str. 52, 10825, Berlin, +49 (0)30 30877-0, presse@hwr-berlin.de , 0, 03EGTBE013, 2024-01-24 15:08:51, 0
+Charité - Universitätsmedizin Berlin, 10, 2, 1, NO, Hindenburgdamm 30, 12203, Berlin, +49 30 450-50, presse@charite.de, 0, 03EGTBE014, 2024-01-24 15:08:51, 0
+Hochschule der Medien Stuttgart, 70, 2, 1, NO, Nobelstr. 10, 70569, Stuttgart, 0711-8923-10, marketing@hdm-stuttgart.de, 0, 03EGTBW001, 2024-01-24 15:08:52, 0
+Karlsruher Institut für Technologie (KIT), 157, 2, 1, NO, Kaiserstr. 12, 76131, Karlsruhe, +49 721 608-0, info@kit.edu, 0, 03EGTBW003, 2024-01-24 15:08:53, 0
+Universität Heidelberg, 130, 2, 1, NO, Im Neuenheimer Feld 720, 69120, Heidelberg, +49 6221/542157, info@uni-heidelberg.de, 0, 03EGTBW005, 2024-01-24 15:08:54, 0
+Hochschule der Medien Stuttgart, 70, 2, 1, NO, Nobelstr. 10, 70569, Stuttgart, 0711-8923-10, marketing@hdm-stuttgart.de, 0, 03EGTBW010, 2024-01-24 15:08:55, 0
+Karlsruher Institut für Technologie (KIT), 157, 2, 1, NO, Kaiserstraße 89, 76133, Karlsruhe, +49 721 608-0, info@kit.edu, 0, 03EGTBW013, 2024-01-24 15:08:55, 0
+SRH Hochschule Heidelberg, 203, 2, 3, NO, Kurfürsten-Anlage 52, 69115, Heidelberg, +49 6221 88-1000, info@hochschule-heidelberg.de, 0, 03EGTBW016, 2024-01-24 15:08:56, 0
+Karlsruher Institut für Technologie (KIT), 157, 2, 1, NO, Gotthard-Franz-Str. 3, Geb. 50.31, 76131, Karlsruhe, +49 721 608-0, info@kit.edu, 0, 03EGTBW017, 2024-01-24 15:08:57, 0
+Universität Stuttgart, 169, 2, 1, NO, Pfaffenwaldring 32, 70569, Stuttgart, +49 711 685-0, info@uni-stuttgart.de, 0, 03EGTBW031, 2024-01-24 15:08:57, 0
+Universität Ulm, 170, 2, 1, NO, Albert-Einstein-Allee 11, 89081, Ulm, +49 731 50-10, info@uni-ulm.de, 0, 03EGTBW032, 2024-01-24 15:08:58, 0
+Hochschule Esslingen, 71, 2, 1, NO, Kanalstr. 33, 73728, Esslingen am Neckar, 0711/397-49, info@hs-esslingen.de, 0, 03EGTBW033, 2024-01-24 15:08:59, 0
+Hochschule Konstanz Technik, Wirtschaft und Gestaltung, 199, 2, 1, NO, Alfred-Wachtel-Str. 8, 78462, Konstanz, + 49 7531 206-0, kontakt@htwg-konstanz.de, 0, 03EGTBW034, 2024-01-24 15:09:00, 0
+Hochschule der Medien Stuttgart, 70, 2, 1, NO, Nobelstr. 10, 70569, Stuttgart, 0711-8923-10, marketing@hdm-stuttgart.de, 0, 03EGTBW035, 2024-01-24 15:09:01, 0
+Universität Hohenheim, 156, 2, 1, NO, Wollgrasweg 49, 70599, Stuttgart, +49 711 459-0, info@uni-hohenheim.de, 0, 03EGTBW036, 2024-01-24 15:09:01, 0
+SRH Hochschule Heidelberg, 203, 2, 3, NO, Kurfürsten-Anlage 52, 69115, Heidelberg, +49 6221 88-1000, info@hochschule-heidelberg.de, 0, 03EGTBW037, 2024-01-24 15:09:02, 0
+Technische Universität München, 147, 2, 1, NO, Boltzmannstr. 15, 85748, Garching, +49 89 289-01, info@tum.de, 0, 03EGTBY001, 2024-01-24 15:09:03, 0
+Friedrich-Alexander-Universität Erlangen-Nürnberg, 56, 2, 1, NO, Werner-von-Siemens-Str. 61, 91052, Erlangen, +49 9131 85-0, poststelle@fau.de, 0, 03EGTBY047, 2023-12-29 15:09:38, 0
+Technische Universität München, 147, 2, 1, NO, Weihenstephaner Berg 1, 85354, Freising b. München, +49 89 289-01, info@tum.de, 0, 03EGTBY002, 2024-01-24 15:09:04, 0
+Friedrich-Alexander-Universität Erlangen-Nürnberg, 56, 2, 1, NO, Cauerstraße 9, 91058, Erlangen, +49 9131 85-0, poststelle@fau.de, 0, 03EGTBY004, 2024-01-24 15:09:04, 0
+Hochschule für angewandte Wissenschaften München, 75, 2, 1, NO, Dachauer Str. 98b, 80335, München, +49 89 1265-0, webmaster@hm.edu, 0, 03EGTBY005, 2024-01-24 15:09:05, 0
+Macromedia GmbH, 295, 2, 3, NO, Sandstr. 9, 80335, München, +49 89 544151-0, info.muc emailmacromedia.de, 0, 03EGTBY006, 2024-01-24 15:09:06, 0
+Ostbayerische Technische Hochschule Regensburg, 44, 2, 1, NO, Seybothstr. 2, 93053, Regensburg, +49 941 943-02, poststelle@oth-regensburg.de, 0, 03EGTBY007, 2024-01-24 15:09:07, 0
+Technische Universität München, 147, 2, 1, NO, Theresienstr. 90/I, 80333, München, +49 89 289-01, info@tum.de, 0, 03EGTBY008, 2024-01-24 15:09:07, 0
+Technische Universität München, 147, 2, 1, NO, Boltzmannstr. 3, 85748, Garching b. München, +49 89 289-01, info@tum.de, 0, 03EGTBY009, 2024-01-24 15:09:08, 0
+Hochschule für angewandte Wissenschaften Augsburg - University of Applied Sciences, 76, 2, 1, NO, An der Hochschule 1, 86161, Augsburg, +49 821 5586-0, info@hs-augsburg.de, 0, 03EGTBY010, 2024-01-24 15:09:09, 0
+Technische Universität München, 147, 2, 1, NO, Arcisstr. 21, 80333, München, +49 89 289-01, info@tum.de, 0, 03EGTBY012, 2024-01-24 15:09:10, 0
+Hochschule für angewandte Wissenschaften München, 75, 2, 1, NO, Lothstr. 64, 80335, München, +49 89 1265-0, webmaster@hm.edu, 0, 03EGTBY014, 2024-01-24 15:09:10, 0
+Hochschule für angewandte Wissenschaften München, 75, 2, 1, NO, Lothstr. 64, 80335, München, +49 89 1265-0, webmaster@hm.edu, 0, 03EGTBY015, 2024-01-24 15:09:11, 0
+Technische Universität München, 147, 2, 1, NO, Arcisstr. 21, 80333, München, +49 89 289-01, info@tum.de, 0, 03EGTBY017, 2024-01-24 15:09:12, 0
+Technische Universität München, 147, 2, 1, NO, Arcisstr. 21, 80333, München, +49 89 289-01, info@tum.de, 0, 03EGTBY024, 2024-01-24 15:09:13, 0
+Technische Universität München, 147, 2, 1, NO, Boltzmannstr. 15, 85748, Garching b. München, +49 89 289-01, info@tum.de, 0, 03EGTBY032, 2024-01-24 15:09:13, 0
+Technische Hochschule Rosenheim, 45, 2, 1, NO, Hochschulstr. 1, 83024, Rosenheim, +49 8031 805-0, info@fh-rosenheim.de, 0, 03EGTBY034, 2024-01-24 15:09:14, 0
+Technische Universität München, 147, 2, 1, NO, Dürnast 10, 85354, Freising, +49 89 289-01, info@tum.de, 0, 03EGTBY035, 2024-01-24 15:09:15, 0
+Technische Universität München, 147, 2, 1, NO, Boltzmannstr. 3, 85748, Garching b. München, +49 89 289-01, info@tum.de, 0, 03EGTBY036, 2024-01-24 15:09:16, 0
+Friedrich-Alexander-Universität Erlangen-Nürnberg, 56, 2, 1, NO, Cauerstr. 11, 91058, Erlangen, +49 9131 85-0, poststelle@fau.de, 0, 03EGTBY037, 2024-01-24 15:09:16, 0
+Klinikum rechts der Isar der Technischen Universität München, 111, 2, 1, NO, Ismaninger Str. 22, 81675, München, 089 / 4140 - 0, vorstand@mri.tum.de, 0, 03EGTBY038, 2024-01-24 15:09:17, 0
+Universität Bayreuth, 149, 2, 1, NO, Universitätsstr. 30, 95447, Bayreuth, +49 921 552708, info@uni-bayreuth.de, 0, 03EGTBY039, 2024-01-24 15:09:18, 0
+Technische Universität München, 147, 2, 1, NO, Dürnast 10, 85354, Freising, +49 89 289-01, info@tum.de, 0, 03EGTBY040, 2024-01-24 15:09:19, 0
+Technische Hochschule Rosenheim, 45, 2, 1, NO, Hochschulstr. 1, 83024, Rosenheim, +49 8031 805-0, info@fh-rosenheim.de, 0, 03EGTBY041, 2024-01-24 15:09:19, 0
+Hochschule für angewandte Wissenschaften Augsburg - University of Applied Sciences, 76, 2, 1, NO, An der Hochschule 1, 86161, Augsburg, +49 821 5586-0, info@hs-augsburg.de, 0, 03EGTBY042, 2024-01-24 15:09:20, 0
+Technische Universität München, 147, 2, 1, NO, Arcisstr. 21, 80333, München, +49 89 289-01, info@tum.de, 0, 03EGTBY043, 2024-01-24 15:09:21, 0
+Klinikum rechts der Isar der Technischen Universität München, 111, 2, 1, NO, Ismaninger Str. 22, 81675, München, 089 / 4140 - 0, vorstand@mri.tum.de, 0, 03EGTBY053, 2024-01-24 15:09:22, 0
+Universität Bremen, 151, 2, 1, NO, Enrique-Schmidt-Str. 1, 28359, Bremen, +49 421 218-1, info@uni-bremen.de, 0, 03EGTHB002, 2024-01-24 15:09:22, 0
+Technische Universität Darmstadt, 142, 2, 1, NO, Karolinenplatz 5, 64289, Darmstadt, +49 6151 16-0, info@tu-darmstadt.de, 0, 03EGTHE004, 2024-01-24 15:09:23, 0
+Hochschule Darmstadt, 69, 2, 1, NO, Schöfferstr. 3, 64295, Darmstadt, +49 6151 16-02, info@h-da.de, 0, 03EGTHE005, 2024-01-24 15:09:24, 0
+Technische Universität Hamburg, 186, 2, 1, NO, Harburger Schloßstr. 6–12, 21079, Hamburg, +49 40 42878-0, info@tuhh.de, 0, 03EGTHH001, 2024-01-24 15:09:25, 0
+Universität Hamburg, 155, 2, 1, NO, Notkestr. 9, 22607, Hamburg, +49 40 42838-0, info@uni-hamburg.de, 0, 03EGTHH002, 2024-01-24 15:09:25, 0
+Hochschule Neubrandenburg - University of Applied Sciences, 95, 2, 1, NO, Brodaer Str. 2, 17033, Neubrandenburg, +49 395 5693-0, presse@hs-nb.de, 0, 03EGTMV001, 2024-01-24 15:09:26, 0
+Universität Rostock, 167, 2, 1, NO, Albert-Einstein-Str. 22, 18059, Rostock, +49 381 498-0, info@uni-rostock.de, 0, 03EGTMV002, 2024-01-24 15:09:27, 0
+Universität Rostock, 167, 2, 1, NO, Albert-Einstein-Str. 2, 18059, Rostock, +49 381 498-0, info@uni-rostock.de, 0, 03EGTMV005, 2024-01-24 15:09:28, 0
+Technische Universität Clausthal, 141, 2, 1, NO, Robert-Koch-Str. 32, 38678, Clausthal-Zellerfeld, +49 5323/72-0, info@tu-clausthal.de, 0, 03EGTNI007, 2024-01-24 15:09:28, 0
+Hochschule Osnabrück, 42, 2, 1, NO, Albrechtstr. 30, Hr. Prof. Tönjes, Raum: UA 0308, 49076, Osnabrück, +49 541 969-0, webmaster@hs-osnabrueck.de, 0, 03EGTNI008, 2024-01-24 15:09:29, 0
+Heinrich-Heine-Universität Düsseldorf, 61, 2, 1, NO, Universitätsstr. 1, 40225, Düsseldorf, +49 211 81-11, kommunikation@hhu.de, 0, 03EGTNW004, 2024-01-24 15:09:30, 0
+ISM International School of Management GmbH, 351, 2, 3, YES, Im MediaPark 5c, 50670, Köln, +49 231 975139-0, ism@ism-dortmund.de, 0, 03EGTNW006, 2024-01-24 15:09:31, 0
+Universität zu Köln, 171, 2, 1, NO, Universitätsstr. 24a, 50931, Köln, +49 221 1470-0, info@Uni-Koeln.de, 0, 03EGTNW007, 2024-01-24 15:09:31, 0
+Universität Duisburg-Essen, 154, 2, 1, NO, Berliner Platz 6-8, 45127, Essen, +49 201 183-1, info@uni-duisburg-essen.de, 0, 03EGTNW008, 2024-01-24 15:09:32, 0
+Technische Hochschule Ostwestfalen-Lippe, 36, 2, 1, NO, Campusallee 12, 32657, Lemgo, +49 5261 702-0, info@th-owl.de, 0, 03EGTNW009, 2024-01-24 15:09:33, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Kackertstr. 7, 52072, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EGTNW012, 2024-01-24 15:09:33, 0
+Technische Hochschule Ostwestfalen-Lippe, 36, 2, 1, NO, Campusallee 12, 32657, Lemgo, +49 5261 702-0, info@th-owl.de, 0, 03EGTNW017, 2024-01-24 15:09:34, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Kackertstr. 7, 52072, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EGTNW021, 2024-01-24 15:09:35, 0
+Technische Hochschule Köln, 33, 2, 1, NO, Betzdorfer Str. 2, 50679, Köln, +49 221 8275-0, pressestelle@th-koeln.de, 0, 03EGTNW023, 2024-01-24 15:09:36, 0
+Deutsche Sporthochschule Köln, 11, 2, 1, NO, Am Sportpark Müngersdorf 6, 50933, Köln, +49 221 4982-0, infopoint@dshs-koeln.de, 0, 03EGTNW024, 2024-01-24 15:09:36, 0
+Fachhochschule Dortmund, 24, 2, 1, NO, Sonnenstr. 96, 44139, Dortmund, +49 231 9112-0, info@fh-dortmund.de, 0, 03EGTNW027, 2024-01-24 15:09:37, 0
+Technische Hochschule Köln, 33, 2, 1, NO, Schanzenstraße 28, 51063, Köln, +49 221 8275-0, pressestelle@th-koeln.de, 0, 03EGTNW029, 2024-01-24 15:09:38, 0
+Rheinisch-Westfälische Technische Hochschule Aachen, 128, 2, 1, NO, Kackertstr. 7, 52072, Aachen, +49 241 801-0, info@rwth-aachen.de, 0, 03EGTNW030, 2024-01-24 15:09:39, 0
+Heinrich-Heine-Universität Düsseldorf, 61, 2, 1, NO, Universitätsstr. 1, 40225, Düsseldorf, +49 211 81-11, kommunikation@hhu.de, 0, 03EGTNW032, 2024-01-24 15:09:39, 0
+Universität zu Köln, 171, 2, 1, NO, Universitätsstr. 24a, 50931, Köln, +49 221 1470-0, info@Uni-Koeln.de, 0, 03EGTNW033, 2024-01-24 15:09:40, 0
+Bergische Universität Wuppertal, 3, 2, 1, YES, Bärenstr. 11-13, 42117, Wuppertal, +49 202 439-0, presse@uni-wuppertal.de, 0, 03EGTNW034, 2024-01-24 15:09:41, 0
+Universität zu Köln, 171, 2, 1, NO, Kerpener Str. 62, 50937, Köln, +49 221 1470-0, info@Uni-Koeln.de, 0, 03EGTNW035, 2024-01-24 15:09:42, 0
+Westfälische Wilhelms-Universität Münster, 175, 2, 1, NO, Leonardo-Campus 3, 48149, Münster, +49 251 83-0, info@uni-muenster.de, 0, 03EGTNW036, 2024-01-24 15:09:42, 0
+Hochschule Ruhr West, 346, 2, 1, NO, Kardinal-Hengsbach-Str. 2-4, 46236, Bottrop, +49 208 88254-102, oliver.koch@hs-ruhrwest.de, 0, 03EGTNW037, 2024-01-24 15:09:43, 0
+Technische Universität Kaiserslautern, 146, 2, 1, NO, Gottlieb-Daimler-Str. 47, 67663, Kaiserslautern, +49 631 205-0, info@uni-kl.de, 0, 03EGTRP004, 2024-01-24 15:09:44, 0
+Hochschule für Technik, Wirtschaft und Kultur Leipzig, 87, 2, 1, NO, Karl-Liebknecht-Str. 132, 04277, Leipzig, +49 341 3076-0, info@htwk-leipzig.de, 0, 03EGTSN002, 2024-01-24 15:09:45, 0
+Hochschule Merseburg (FH), 94, 2, 1, NO, Eberhard-Leibnitz-Str. 2, 06217, Merseburg, +49 (0) 3461 46-0, rektorat@hs-merseburg.de, 0, 03EGTST001, 2024-01-24 15:09:45, 0
+Hochschule Schmalkalden, 46, 2, 1, NO, Blechhammer 9, 98574, Schmalkalden, +49 3683688-0, info@hs-schmalkalden.de, 0, 03EGTTH009, 2024-01-24 15:09:46, 0
